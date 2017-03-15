@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+
+{% block contacts %}
+<header>
+    <div class="header-content">
+        <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3 text-center">
+                        <a href="{{host}}">Теплицы "МетАгро"</a>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 text-center ">
+                        <a href="{{host}}calculator">Калькулятор</a>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                        <a href="{{host}}products">Продукция</a>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                        <a href="{{host}}photos">Галерея</a>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center  current-page">
+                        <a href="{{host}}contacts">Контакты</a>
+                    </div>
+                </div>
+        </div>
+    </div>        
+</header>
+
+<div class="content content-contacts">
+<h1 class="text-center">Наши контакты:</h1><br/>
+    <p><b>Адрес: </b>61158, Украина, г.Харьков, ул.Индустриальная, 3</p><br/>
+    <p><b>Телефоны: </b>+38 (098) 627 91 44; +38 (099) 408 37 00</p><br/>
+    <p><b>email: </b>avaksafaryan@mail.ru</p><br/>
+
+</div>
+
+{% endblock %}

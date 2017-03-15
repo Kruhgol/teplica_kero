@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+
+{% block products %}
+<header>
+    <div class="header-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3 text-center">
+                    <a href="{{host}}">Теплицы "МетАгро"</a>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 text-center ">
+                    <a href="{{host}}calculator">Калькулятор</a>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center  current-page">
+                    <a href="{{host}}products">Продукция</a>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                    <a href="{{host}}photos">Галерея</a>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                    <a href="{{host}}contacts">Контакты</a>
+                </div>
+            </div>
+        </div>
+    </div>        
+</header>
+<div class="content content-products">
+    <h1 class="text-center">Компания "МетАгро" производит теплицы следующих моделей:</h1><br/>
+
+    <div class="container-fluid">        
+        {% for greenhouse in greenhouses %}
+            <div class="row product">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <table>
+                        <tr>
+                            <td>
+                                <a href="{{host}}media/{{greenhouse.greenhouse_frontImage}}" rel="lightbox-dacha1" title="Теплица">
+                                    <img src="{{host}}media/{{greenhouse.greenhouse_frontImage}}" alt="" width="100%">
+                                </a>
+                            </td>
+                            <td>
+                                <h3>Модель "{{greenhouse.greenhouse_title}}" под пленку:</h3><br/>
+                                <p>Ширина - {{greenhouse.greenhouse_width}}м</p>
+                                <p>Высота - {{greenhouse.greenhouse_height}}м</p>
+                            </td>
+                            <td>
+                                <a href="{{host}}media/{{greenhouse.greenhouse_Image}}" rel="lightbox-dacha1" title="Теплица">
+                                    <img src="{{host}}media/{{greenhouse.greenhouse_image}}" alt="" width="100%">
+                                </a>                                        
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div><br/>
+        {% endfor %}
+
+
+    </div>
+
+</div>
+
+{% endblock %}

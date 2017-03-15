@@ -20,6 +20,18 @@
 
 }
 
+.content-photos {
+    .row {
+        div {
+            a {
+                img {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+}
+
 .content-products {
     .product {
         &:nth-child(odd){

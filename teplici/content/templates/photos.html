@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+
+{% block photos %}
+<header>
+    <div class="header-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3 text-center">
+                    <a href="{{host}}">Теплицы "МетАгро"</a>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 text-center ">
+                    <a href="{{host}}calculator">Калькулятор</a>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                    <a href="{{host}}products">Продукция</a>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center current-page">
+                    <a href="{{host}}photos">Галерея</a>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                    <a href="{{host}}contacts">Контакты</a>
+                </div>
+            </div>
+        </div>
+    </div>        
+</header>
+<div class="content content-photos">
+    <h1 class="text-center">Теплицы от компании "МетАгро"</h1><br/>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+            {% for img in columnFirst %}
+            <a href="{{host}}media/{{img.photo_place}}" rel="lightbox-dacha1" title="Теплица">
+                <img src="{{host}}media/{{img.photo_place}}" alt="" width="100%">
+            </a>                
+            {% endfor %}
+        </div> 
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+            {% for img in columnSecond %}
+            <a href="{{host}}media/{{img.photo_place}}" rel="lightbox-dacha1" title="Теплица">
+                <img src="{{host}}media/{{img.photo_place}}" alt="" width="100%">
+            </a>                
+            {% endfor %}
+        </div> 
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+            {% for img in columnThird %}
+            <a href="{{host}}media/{{img.photo_place}}" rel="lightbox-dacha1" title="Теплица">
+                <img src="{{host}}media/{{img.photo_place}}" alt="" width="100%">
+            </a>                
+            {% endfor %}
+        </div> 
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+            {% for img in columnFourth %}
+            <a href="{{host}}media/{{img.photo_place}}" rel="lightbox-dacha1" title="Теплица">
+                <img src="{{host}}media/{{img.photo_place}}" alt="" width="100%">
+            </a>                
+            {% endfor %}
+        </div> 
+    </div>
+</div>
+
+{% endblock %}
