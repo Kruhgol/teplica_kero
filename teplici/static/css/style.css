@@ -47,11 +47,11 @@ body {
         position: absolute;
         bottom: 10px;
         right: 10px;
-        color: #000000;
+        color: #ffffff;
         font-size: 16px;
         font-weight: bold; }
         body .wrapper .footer .kruhgol a {
-          color: #000000;
+          color: #ffffff;
           font-size: 16px;
           font-weight: bold;
           text-decoration: none; }
@@ -194,3 +194,82 @@ header {
     height: auto; }
     .content-products .product div table tr td a img {
       vertical-align: middle; }
+
+.call-me {
+  width: 200px;
+  height: 200px;
+  position: fixed;
+  bottom: 30px;
+  right: 10px;
+  z-index: 50;
+  text-align: center; }
+  .call-me:hover {
+    cursor: pointer; }
+  .call-me .toch {
+    width: 100%;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    background-color: #ffffff; }
+    .call-me .toch p {
+      font-size: 20px;
+      text-align: center; }
+  .call-me .close-call {
+    position: absolute;
+    z-index: 55;
+    top: 0;
+    right: 0;
+    width: 25px;
+    font-size: 18px;
+    background-color: #F6E5E4;
+    border: solid 1px #9D9D9D;
+    -webkit-border-radius: 50%;
+    border-radius: 50%; }
+
+.call-form {
+  display: none;
+  background-color: rgba(118, 226, 123, 0.8);
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 500px; }
+  .call-form div {
+    display: table;
+    width: 100%;
+    height: 100%; }
+    .call-form div .div-table-cell {
+      display: table-cell;
+      width: 100%;
+      height: 100%;
+      vertical-align: middle;
+      text-align: center; }
+      .call-form div .div-table-cell .center-block {
+        margin-top: 25%;
+        width: 30%;
+        max-width: 300px; }
+  .call-form .div-close-form {
+    position: absolute;
+    z-index: 102;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 36px;
+    background-color: #F6E5E4;
+    border: solid 1px #9D9D9D;
+    -webkit-border-radius: 50%;
+    border-radius: 50%; }
+    .call-form .div-close-form:hover {
+      cursor: pointer;
+      background-color: #10A605; }
+
+#form div label {
+  font-size: 18px; }
+
+#form input[type="button"] {
+  font-weight: bold;
+  background-color: #F8FB00; }

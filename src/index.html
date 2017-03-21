@@ -16,6 +16,7 @@
 
 </head>
 <body>
+    {% csrf_token %}
     <div class="wrapper">
         <div class="site">
           
@@ -33,6 +34,49 @@
             </div>
         </div>
         
+    </div>
+
+    <div class="call-me" id="call-me">
+        <div class="toch" id="toch">
+            <p>Нажмите и мы перезвоним!!!!!</p>
+        </div>
+        <img id="call-img" src="http://127.0.0.1:8000/media/images/telephone.gif" class="">
+        <div class="close-call" id="close-call">X</div>
+    </div>
+
+    <div class="call-form" id="call-form">
+        <!-- <div class="color-opacity"></div> -->
+        <div>
+            <div class="div-table-cell">
+                <div class="center-block">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">       
+                                <form id="form" novalidate>
+                                    <div class="form-group">
+                                        <h3>Заполните форму, и с Вами свяжутся в ближайшее время!</h3>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputEmail">Ваше имя?</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Имя?">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword">Ваш номер телефона?</label>
+                                        <input type="text" class="form-control" id="number" placeholder="Номер телефона">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword">Ваш Email?</label>
+                                        <input type="text" class="form-control" id="email" placeholder="Password">
+                                    </div>
+                                    <input type="button" value="Отправить!" id="form-button" >
+                                </form>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <div class="div-close-form" id="close-form">X</div>
     </div>
 
 </body>

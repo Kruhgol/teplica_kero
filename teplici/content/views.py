@@ -1,7 +1,10 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render, render_to_response, redirect
 from django.http.response import HttpResponse, Http404
 from django.template.context_processors import csrf
-from content.models import Greenhouse, Photo, Galery
+from content.models import Greenhouse, Photo, Galery, Client
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -9,6 +12,10 @@ args = {}
 args['host'] = 'http://127.0.0.1:8000/'
 
 
+def email(request):
+    c = Client.objects.create(client_name = request.POST['name'], client_number = request.POST['number'], client_email = request.POST['email'], client_describtion = '')
+    send_mail('Новый заказ!', request.POST['text'], 'nmkdeveloper@gmail.com', ['kruhgol@gmail.com'], fail_silently=False)
+    return HttpResponse('ok')
 
 def index(request):
     args.update(csrf(request))

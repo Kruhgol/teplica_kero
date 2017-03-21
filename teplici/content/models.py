@@ -33,3 +33,13 @@ class Photo(models.Model):
 
     def __unicode__(self):
         return 'Фото'
+
+class Client(models.Model):
+    class Meta:
+        db_table = "Клиент"
+    client_name = models.CharField(null=True, max_length=200, help_text='Имя клиента')
+    client_number = models.CharField(null=True, max_length=200, help_text='Номер телефона клиента')
+    client_email = models.CharField(null=True, max_length=200, help_text='Email клиента')
+    client_describtion = models.TextField(null=True, help_text='Сдесь Вы можете оставить заметку')
+    def __unicode__(self):
+        return self.client_name

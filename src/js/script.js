@@ -1,110 +1,102 @@
 document.addEventListener("DOMContentLoaded", function(){
 
-    var width = $('#photo-container').width();
+$('#close-call').bind('click', function(){
+    $('#call-me').hide();
+});
+
+$('#toch').bind('click', callFormShow);
+$('#call-img').bind('click', callFormShow);
+
+function callFormShow(){
+    var callFormConteiner = $('#call-form');
+    var width = $(window).width();
     var height = $(window).height();
-    console.log('w = ' + width);
-    console.log('h = ' + height);
+    callFormConteiner.css({'width':width, 'height': height});
+    callFormConteiner.show();
+    $('#call-me').hide();
+}
 
-    var maxW = '300px';
-    var arr = [
-            'img/1.1.jpg',
-            'img/1.2.jpg',
-            'img/2.1.jpg',
-            'img/2.2.1.jpg',
-            'img/1.1.jpg',
-            'img/1.2.jpg',
-            'img/2.1.jpg',
-            'img/2.2.1.jpg',
-            'img/1.1.jpg',
-            'img/1.2.jpg',
-            'img/2.1.jpg',
-            'img/2.2.1.jpg'
-        ]
+$('#close-form').bind('click', function(){
+    $('#call-form').hide();
+    $('#call-me').show();
+});
 
-    var div = $('#photo-container');
+$('#form-button').bind('click', function(){
+    console.log($('#form'));
+    var text = 'Вам пришел новый запрос от - '+
+        $('#name').val() +', номер телефона - '+
+        $('#number').val() +', email - '+$('#email').val();
+    console.log(text);
 
-    div.css({
-        'height' : '500px',
-        'position' : 'relative'
-    })
+    $.post(
+      "http://127.0.0.1:8000/request/email",
+      {
+        email: $('#email').val(),
+        name: $('#name').val(),
+        number: $('#number').val(),
+        text: text
+      },
+      onAjaxSuccess
+    ); 
+    $('#call-form').hide();
+    $('#call-me').show();
+})
 
-    for(var i=0; i<arr.length; i++){
-        var img = $('<img>',{
-            src: arr[i],
-            width: randomWidth() + 'px'
-        });
-        img.css({
-            'position' : 'absolute',
-            'z-index' : randomZindex(),
-            'top' : randomTop() + 'px',
-            'left' : randomLeft() + 'px'
-        })
-        div.append(img);
+function onAjaxSuccess(){
+    $('#call-form').hide();
+    alert('Ваш запрос успешно отправлен')
+} 
+function onAjaxNotSuccess(){
+    $('#call-form').hide();
+    alert('Извините, произошла ошибка! Попробуйте еще разок!')
+}
+// using jQuery
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
     }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
 
-    div.bind('click', function(event){
-        var img = event.target;
-        console.log(img.src);
-
-        var divTable = $('<div>',{
-                'id' : 'div-table'
-            }).css({
-                'position' : 'fixed',
-                'top' : '0px',
-                'width' : width + 'px',
-                'height' : height + 'px',
-                'display' : 'table',
-                'z-index' : '30'
-            })
-
-        var divTableCell = $('<div>').css({
-            'width' : '80%',
-            'display' : 'table-cell',
-            'vertical-align' : 'middle',
-            'text-align' : 'center'
-        })
-
-        divTableCell.append($('<img>', {
-            src: img.src
-        }).css({
-            'width' : '100%'
-        }));
-
-        divTable.append(divTableCell);
-        $('#photo-container').append(divTable);
-
-        $('#div-table').bind('click', function(){
-            console.log('remove');
-            $('#div-table').remove();
-       })
-
-    })
-
-    function randomTop(){
-        min = 50;
-        max = 500 - 150;
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+function sameOrigin(url) {
+    // test that a given url is a same-origin URL
+    // url could be relative or scheme relative or absolute
+    var host = document.location.host; // host + port
+    var protocol = document.location.protocol;
+    var sr_origin = '//' + host;
+    var origin = protocol + sr_origin;
+    // Allow absolute or scheme relative URLs to same origin
+    return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+        (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+        // or any other URL that isn't scheme relative or absolute i.e relative.
+        !(/^(\/\/|http:|https:).*/.test(url));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+            // Send the token to same-origin, relative URLs only.
+            // Send the token only if the method warrants CSRF protection
+            // Using the CSRFToken value acquired earlier
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
     }
-
-    function randomLeft(){
-        min = 0;
-        max = width - 300;
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    function randomWidth(){
-        max = 300;
-        min = 100;
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    function randomZindex(){
-        max = 20;
-        min = 1;
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-
+});
+  
+   
 
 
 })
